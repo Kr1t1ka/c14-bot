@@ -1,0 +1,24 @@
+from pydantic import BaseModel
+
+
+class VKMessage(BaseModel):
+    text: str
+    peer_id: int
+    from_id: int
+    payload: str = None
+    date: int
+    id: int
+    attachments: list
+    conversation_message_id: int
+
+
+class VKObject(BaseModel):
+    message: VKMessage
+    client_info: dict
+
+
+class VKRequest(BaseModel):
+    object: VKObject = None
+    secret: str = None
+    type: str
+    group_id: int
